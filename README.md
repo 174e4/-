@@ -607,5 +607,111 @@ API監控和分析工具：
 7. **審計日誌** - 記錄API訪問和操作
 
 ## 結論
+我來解答您的問題：
 
+## API是什麼？
+
+API（應用程式介面，Application Programming Interface）是一組允許不同軟體系統之間相互通信的規則和工具。它就像是一個服務員，幫助您向另一個軟體系統提出請求並獲取回應，無需了解該系統的內部工作原理。
+
+實例：當您使用手機應用查看天氣時，這款應用會通過一個API向天氣服務提供商發送請求，然後接收並顯示天氣數據。
+
+## 調用API是什麼？
+
+調用API是指一個程式向另一個程式發送請求以使用其服務的過程。這就像是撥打電話給餐廳訂餐 - 您提出特定的請求，然後獲得回應。
+
+實例：當您在網站上點擊"使用Google帳號登入"按鈕時，該網站會調用Google的API來驗證您的身份。
+
+## HATEOAS是什麼？
+
+HATEOAS（Hypermedia as the Engine of Application State，超媒體作為應用狀態引擎）是REST架構的一個原則，它使API回應中包含導航信息（連結），客戶端可以用來發現並導航到相關資源。
+
+實例：當您獲取一本書的信息時，API不僅返回書名和作者，還會提供獲取作者詳情、相關書籍或添加評論的連結。
+
+```json
+{
+  "id": 1,
+  "title": "哈利波特",
+  "author": "J.K. 羅琳",
+  "_links": {
+    "self": { "href": "/api/books/1" },
+    "author": { "href": "/api/authors/12" },
+    "reviews": { "href": "/api/books/1/reviews" }
+  }
+}
+```
+
+## API開發框架是什麼？
+
+API開發框架是幫助開發者更快速、更輕鬆地構建API的工具集。它們提供了處理常見任務（如路由、請求解析、身份驗證）的結構和預定義功能。
+
+實例：Express.js（Node.js框架）讓您能夠輕鬆定義API端點和處理請求：
+
+```javascript
+app.get('/api/books', (req, res) => {
+  res.json(books);  // 自動處理JSON轉換和回應
+});
+```
+
+## Node.js是什麼？
+
+Node.js是一個JavaScript運行環境，允許在伺服器端執行JavaScript代碼。它非常適合構建高性能、可擴展的網絡應用程式，尤其是API。
+
+優點：
+- 使用相同的語言(JavaScript)進行前後端開發
+- 非阻塞I/O模型，處理大量並發連接
+- 豐富的開源套件生態系統(npm)
+
+## API監控是什麼？
+
+API監控是追蹤和分析API性能、可用性和使用情況的過程。它幫助開發者識別問題、優化性能並確保API符合服務水平協議(SLA)。
+
+監控項目包括：
+- 回應時間
+- 錯誤率
+- 請求量
+- 伺服器資源使用情況
+- 端點使用頻率
+
+## CORS設置是什麼？
+
+CORS(跨來源資源共享，Cross-Origin Resource Sharing)是一種安全機制，控制網頁上的JavaScript從不同來源(網域、協議或端口)請求資源的能力。
+
+CORS設置決定哪些網站可以調用您的API：
+
+```javascript
+// 允許所有來源訪問（較寬鬆的設置）
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+// 或僅允許特定網站
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://mywebsite.com');
+  // ...其他設置
+  next();
+});
+```
+
+## API設計模式是什麼？
+
+API設計模式是構建API的經過驗證的解決方案和最佳實踐。它們幫助確保API的一致性、可用性和可維護性。
+
+常見的API設計模式包括：
+
+1. **REST (表述性狀態轉移)** - 使用標準HTTP方法(GET, POST, PUT, DELETE)和URL來操作資源。
+
+2. **GraphQL** - 單一端點允許客戶端精確指定需要的數據，減少過度獲取或獲取不足。
+
+3. **微服務API模式** - 將API分為小型、專注的服務，每個服務處理特定的業務功能。
+
+4. **API網關模式** - 使用單一入口點處理認證、統計和路由到後端服務。
+
+5. **遷留(Pipeline)模式** - 將請求處理分為多個階段(驗證、轉換、業務邏輯等)。
+
+6. **命令查詢責任分離(CQRS)** - 將讀取操作(查詢)和寫入操作(命令)分開處理。
+
+這些設計模式不是互斥的，許多成功的API實現會結合多種模式的元素來滿足其特定需求。​​​​​​​​​​​​​​​​
 
